@@ -1,0 +1,5 @@
+{
+  "name": "Gerador de Etiquetas de Correios",
+  "description": "Aplicativo para gerar etiquetas de correios com campos editáveis e impressão em formato A4 (6 por página).",
+  "requestFramePermissions": []
+}
