@@ -5,11 +5,17 @@ import { format } from 'date-fns';
 import { Label } from './components/Label';
 import { PrintableLabels } from './components/PrintableLabels';
 
+const PART_OPTIONS = [
+  { partNumber: '5848095', description: 'Etiqueta Ret\n29x38 Left' },
+  { partNumber: '5848093', description: 'Etiqueta Ret\n29x38 Right' },
+  { partNumber: '5848099', description: 'Etiqueta Ret\n29x38 Top Tether' },
+];
+
 export default function App() {
   const [quantity, setQuantity] = useState('500');
   const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [idNumber, setIdNumber] = useState('74258');
-  const [description, setDescription] = useState('Etiqueta Ret\n29x38 Left');
+  const [selectedPartIndex, setSelectedPartIndex] = useState(0);
   const [isIframe, setIsIframe] = useState(false);
 
   useEffect(() => {
@@ -23,12 +29,15 @@ export default function App() {
     documentTitle: 'Etiquetas',
   });
 
+  const currentPart = PART_OPTIONS[selectedPartIndex];
+
   // Generate 6 identical labels for the print view
   const labelsToPrint = Array(6).fill({
     quantity,
     date,
     idNumber,
-    description,
+    partNumber1: currentPart.partNumber,
+    description: currentPart.description,
   });
 
   return (
@@ -58,6 +67,23 @@ export default function App() {
             <h2 className="text-xl font-semibold mb-6 text-gray-700">Dados da Etiqueta</h2>
             
             <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Tipo de Peça (Part No.)
+                </label>
+                <select
+                  value={selectedPartIndex}
+                  onChange={(e) => setSelectedPartIndex(Number(e.target.value))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors bg-white"
+                >
+                  {PART_OPTIONS.map((option, index) => (
+                    <option key={option.partNumber} value={index}>
+                      {option.partNumber} - {option.description.replace('\n', ' ')}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Quantidade
@@ -96,19 +122,6 @@ export default function App() {
                   placeholder="Ex: 74258"
                 />
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Descrição
-                </label>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  rows={2}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-                  placeholder="Etiqueta Ret..."
-                />
-              </div>
             </div>
 
             <button
@@ -128,7 +141,8 @@ export default function App() {
                 quantity={quantity}
                 date={date}
                 idNumber={idNumber}
-                description={description}
+                partNumber1={currentPart.partNumber}
+                description={currentPart.description}
               />
             </div>
             <p className="text-sm text-gray-500 mt-4 text-center">

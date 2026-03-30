@@ -6,6 +6,7 @@ interface PrintableLabelsProps {
     quantity: string;
     date: string;
     idNumber: string;
+    partNumber1: string;
     description: string;
   }[];
 }
@@ -41,6 +42,7 @@ export const PrintableLabels = forwardRef<HTMLDivElement, PrintableLabelsProps>(
               quantity={label.quantity}
               date={label.date}
               idNumber={label.idNumber}
+              partNumber1={label.partNumber1}
               description={label.description}
             />
           ))}

@@ -73,7 +73,7 @@ export const Label: React.FC<LabelProps> = ({
           </div>
           <div className="w-[33mm] p-1 relative flex flex-col justify-center">
             <span className="absolute top-0.5 left-1 text-[5px] font-bold">Ship To</span>
-            <div className="text-[7.5px] leading-[1.2] mt-2 ml-1">
+            <div className="text-[8.5px] leading-[1.15] mt-2 ml-1">
               Adient do Brasil Ltda.<br />
               Av. dos Alecrins, 999<br />
               Dist. Industrial - Pouso Alegre<br />
@@ -101,7 +101,7 @@ export const Label: React.FC<LabelProps> = ({
           </div>
           <div className="w-[33mm] p-1 relative flex flex-col justify-center">
             <span className="absolute top-0.5 left-1 text-[5px] font-bold">Ship From</span>
-            <div className="text-[7.5px] leading-[1.2] mt-2 ml-1">
+            <div className="text-[8.5px] leading-[1.15] mt-2 ml-1">
               Braffix Transfers C. Sorocaba<br />
               Av. Independência, 1445<br />
               Iporanga - Sorocaba<br />
